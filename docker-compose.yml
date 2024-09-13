@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  postgres-service:
+    image: postgres
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "admin"
+      POSTGRES_DB: "postgres"
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - ebac-network
+
+  pgadmin-service:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    ports:
+      - "16543:80"
+    depends_on:
+      - postgres-service
+    networks:
+      - ebac-network
+
+networks:
+  ebac-network:
+    driver: bridge
+
+volumes:
+  postgres-data:
+  mysql-data:

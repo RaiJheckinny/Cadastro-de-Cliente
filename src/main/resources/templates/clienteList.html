@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:p="http://www.primefaces.org/ui">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Cliente</title>
+    <style>
+        /* Estilo global */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4; /* Fundo claro */
+            color: #333; /* Texto escuro */
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff;
+            background-color: #ff5722; /* Laranja vibrante */
+            padding: 20px;
+            margin-top: 0;
+            border-bottom: 4px solid #e64a19; /* Linha inferior em tom mais escuro */
+        }
+
+        /* Estilo da tabela */
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: #ffffff; /* Fundo branco para a tabela */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra leve */
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd; /* Linha de divisão clara */
+        }
+
+        th {
+            background-color: #00bcd4; /* Azul turquesa */
+            color: #fff;
+        }
+
+        tr:hover {
+            background-color: #e0f7fa; /* Azul claro ao passar o mouse */
+        }
+
+        .actions {
+            text-align: center;
+        }
+
+        .actions a {
+            color: #ff5722; /* Laranja vibrante */
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        .actions a:hover {
+            color: #e64a19; /* Tom mais escuro de laranja ao passar o mouse */
+            text-decoration: underline;
+        }
+
+        /* Estilo do link de voltar */
+        .back-link {
+            display: block;
+            text-align: center;
+            margin: 20px;
+            color: #00bcd4; /* Azul turquesa */
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            color: #0097a7; /* Azul turquesa mais escuro */
+            text-decoration: underline;
+        }
+        .actions {
+            text-align: center;
+        }
+
+        .actions a {
+            color: #fff; /* Texto branco nos botões */
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            display: inline-block;
+            font-weight: bold;
+        }
+
+        .actions .edit-button {
+            background-color: #ffeb3b; /* Amarelo */
+        }
+
+        .actions .delete-button {
+            background-color: #f44336; /* Vermelho */
+        }
+
+        .actions a:hover {
+            opacity: 0.8;
+        }
+        .cadastrar-button{
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+    <script>
+        function confirmDelete(event) {
+            if (!confirm('Você tem certeza de que deseja remover este cliente?')) {
+                event.preventDefault();
+            }
+        }
+    </script>
+</head>
+<body>
+<h1>Lista de Cliente</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Nome</th>
+        <th>Cpf</th>
+        <th>Telefone</th>
+        <th>Email</th>
+        <th>Endereço</th>
+        <th>Numero</th>
+        <th>Cidade</th>
+        <th>Estado</th>
+        <th>Açoes</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="cliente, iterStat : ${cliente}">
+        <td th:text="${iterStat.index + 1}"></td>
+        <td th:text="${cliente.nome}"></td>
+        <td th:text="${cliente.cpf}"></td>
+        <td th:text="${cliente.tel}"></td>
+        <td th:text="${cliente.email}"></td>
+        <td th:text="${cliente.endereco}"></td>
+        <td th:text="${cliente.numero}"></td>
+        <td th:text="${cliente.cidade}"></td>
+        <td th:text="${cliente.estado}"></td>
+        <td class="actions">
+            <!-- Botão de alterar -->
+            <a th:href="@{/cliente/editar/{id}(id=${cliente.id})}" class="edit-button">Alterar</a>
+            <!-- Botão de remover -->
+            <a th:href="@{/cliente/remover/{id}(id=${cliente.id})}" class="delete-button" onclick="confirmDelete(event)">Remover</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div>
+    <a th:href="@{/cliente/form}" class="cadastrar-button">Cadastrar Cliente</a>
+
+</div>
+</body>
+</html>
