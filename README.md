@@ -22,26 +22,13 @@ Como Executar o Projeto
 
 
 
-2. Certifique-se de estar na raiz do projeto, onde está localizado o arquivo docker-compose.yml. Em seguida, execute:
+2. Certifique-se de estar na pasta do projeto, onde está localizado o arquivo docker-compose.yml. Em seguida, execute:
+
   docker-compose up -d
 
 
 4. Compilar e Executar o Projeto
 
-
-
-5. Navegue para o diretório onde o arquivo ClienteApplication.java está localizado:
-  cd src/main/java/br/com/raijheckinny
-
-  
-  
-  Compile o projeto com Maven:
-  ./mvnw clean package
-  
-
-  
-  Execute a aplicação Spring Boot:
-  ./mvnw spring-boot:run
 
 
 Detalhes das Rotas
