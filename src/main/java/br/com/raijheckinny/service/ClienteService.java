@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-public class ClienteService{
+public class ClienteService implements IClienteService {
 
     @Autowired
     private IClienteRepository clienteRepository;
@@ -29,6 +29,6 @@ public class ClienteService{
     }
 
     public Cliente buscarClientePorId(Long id) {
-        return clienteRepository.findById(id).get();
+        return clienteRepository.findById(id).orElse(null);
     }
 }
